@@ -1,0 +1,25 @@
+{
+  "name": "JSuzuki Control",
+  "short_name": "Finance",
+  "description": "Sistema integral de finanzas personales",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Nuevo gasto", "short_name": "Gasto", "url": "/gastos?nuevo=1" },
+    { "name": "Nuevo ingreso", "short_name": "Ingreso", "url": "/ingresos?nuevo=1" },
+    { "name": "Informes", "short_name": "Informes", "url": "/informes" }
+  ]
+}

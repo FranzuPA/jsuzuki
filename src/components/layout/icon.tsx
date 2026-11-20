@@ -1,0 +1,111 @@
+"use client";
+
+import {
+  AlertTriangle,
+  ArrowRightLeft,
+  Banknote,
+  Calculator,
+  Calendar,
+  CalendarDays,
+  CalendarRange,
+  Car,
+  Clapperboard,
+  CreditCard,
+  Droplet,
+  Dumbbell,
+  FileText,
+  Gift,
+  GraduationCap,
+  Heart,
+  HeartPulse,
+  Home,
+  Landmark,
+  LayoutDashboard,
+  Lightbulb,
+  Link as LinkIcon,
+  MoreHorizontal,
+  PawPrint,
+  Percent,
+  PiggyBank,
+  PlusCircle,
+  Repeat,
+  Settings,
+  Shield,
+  ShoppingBag,
+  ShoppingCart,
+  Smartphone,
+  Sparkles,
+  Tag,
+  Target,
+  Trash2,
+  TrendingDown,
+  TrendingUp,
+  Upload,
+  Utensils,
+  Wallet,
+  Wifi,
+  Wrench,
+  Zap,
+} from "lucide-react";
+
+const icons = {
+  "alert-triangle": AlertTriangle,
+  "arrow-right-left": ArrowRightLeft,
+  banknote: Banknote,
+  calculator: Calculator,
+  calendar: Calendar,
+  "calendar-days": CalendarDays,
+  "calendar-range": CalendarRange,
+  car: Car,
+  clapperboard: Clapperboard,
+  "credit-card": CreditCard,
+  droplet: Droplet,
+  dumbbell: Dumbbell,
+  "file-text": FileText,
+  gift: Gift,
+  "graduation-cap": GraduationCap,
+  heart: Heart,
+  "heart-pulse": HeartPulse,
+  home: Home,
+  landmark: Landmark,
+  "layout-dashboard": LayoutDashboard,
+  lightbulb: Lightbulb,
+  link: LinkIcon,
+  "more-horizontal": MoreHorizontal,
+  "paw-print": PawPrint,
+  percent: Percent,
+  "piggy-bank": PiggyBank,
+  "plus-circle": PlusCircle,
+  repeat: Repeat,
+  settings: Settings,
+  shield: Shield,
+  "shopping-bag": ShoppingBag,
+  "shopping-cart": ShoppingCart,
+  smartphone: Smartphone,
+  sparkles: Sparkles,
+  tag: Tag,
+  target: Target,
+  "trash-2": Trash2,
+  "trending-down": TrendingDown,
+  "trending-up": TrendingUp,
+  upload: Upload,
+  utensils: Utensils,
+  wallet: Wallet,
+  wifi: Wifi,
+  wrench: Wrench,
+  zap: Zap,
+} as const;
+
+export type IconName = keyof typeof icons;
+
+export function isIconName(value: string): value is IconName {
+  return value in icons;
+}
+
+/** Resuelve un icono por nombre. Si no existe usa una etiqueta genérica. */
+export function Icon({ name, className }: { name: string; className?: string }) {
+  const Component = isIconName(name) ? icons[name] : Tag;
+  return <Component className={className} aria-hidden />;
+}
+
+export const ICON_NAMES = Object.keys(icons) as IconName[];
