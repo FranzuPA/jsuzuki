@@ -16,7 +16,7 @@ export function BrandMark({ className, compact = false }: { className?: string; 
       </span>
       {!compact ? (
         <span className="text-[15px] font-semibold tracking-tight">
-          Finance <span className="font-normal opacity-60">Control</span>
+          JSuzuki <span className="font-normal opacity-60">Control</span>
         </span>
       ) : null}
     </div>
