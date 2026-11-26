@@ -53,7 +53,8 @@ Abrí `.env` y completá al menos estas tres variables:
 
 | Variable | Obligatoria | Para qué sirve |
 | --- | --- | --- |
-| `DATABASE_URL` | Sí | Cadena de conexión de PostgreSQL. |
+| `DATABASE_URL` | Sí | Cadena de conexión de PostgreSQL que usa la aplicación. |
+| `DIRECT_URL` | Sí | Conexión directa que usan las migraciones. En local puede ser igual a `DATABASE_URL`. |
 | `AUTH_SECRET` | Sí | Firma de las cookies de sesión. Mínimo 32 caracteres. |
 | `ENCRYPTION_KEY` | Sí | Cifra los tokens de Mercado Pago (AES-256-GCM). Mínimo 32 caracteres. |
 | `APP_URL` | No | URL pública. Por defecto `http://localhost:3000`. |
@@ -264,10 +265,16 @@ Está preparada para Vercel con PostgreSQL administrado (Supabase, Neon o
 equivalente).
 
 1. Conectá el repositorio al proyecto de Vercel.
-2. Cargá las variables de entorno de la tabla de más arriba.
+2. Cargá las variables de entorno de la tabla de más arriba. Con Supabase:
+   - `DATABASE_URL`: el pooler en modo **transaction** (puerto `6543`) con
+     `?pgbouncer=true&connection_limit=1` al final. Si usás el modo session
+     (puerto `5432`), las funciones serverless agotan las 15 conexiones del
+     pool y la aplicación falla con `EMAXCONNSESSION`.
+   - `DIRECT_URL`: el pooler en modo session o la conexión directa (puerto
+     `5432`). La usan las migraciones.
 3. Aplicá las migraciones contra la base de producción:
    ```bash
-   DATABASE_URL="<la de producción>" npm run db:deploy
+   DATABASE_URL="<la de producción>" DIRECT_URL="<la directa>" npm run db:deploy
    ```
 4. Desplegá. El `build` genera el cliente de Prisma solo.
 
